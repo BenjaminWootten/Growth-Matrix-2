@@ -36,6 +36,9 @@ func _physics_process(delta):
 	if $MeshInstance3D.scale.y >= SIZE_MAX:
 		is_growing = false
 		self.freeze = true
+		for box in frozen:
+			box.freeze  = false
+			box.set_collision_layer_value(1, false)
 	
 	if $MeshInstance3D.scale.y <= SIZE_MIN:
 		is_shrinking = false
@@ -116,6 +119,11 @@ func check_collision(axis: Vector3, origin_box):
 		elif collider.get_meta("boxtype") == "red":
 			return 0
 		elif collider.get_meta("boxtype") == "blue":
-			return check_collision(axis, collider)
+			var blue_chain_result = check_collision(axis, collider)
+			if blue_chain_result == 0:
+				collider.freeze = true
+				collider.set_collision_layer_value(1, true)
+				frozen.append(collider)
+			return blue_chain_result
 	return GROW_SPEED/2
 
