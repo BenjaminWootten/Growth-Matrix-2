@@ -5,6 +5,7 @@ extends RigidBody3D
 
 var is_growing = false
 var is_shrinking = false
+@onready var initial_position = Vector3(self.position)
 
 var x_growth
 var y_growth
@@ -34,20 +35,23 @@ func shrink_start():
 func _physics_process(delta):
 	if $MeshInstance3D.scale.y >= SIZE_MAX:
 		is_growing = false
-		for box in frozen:
-			box.freeze = false
+		self.freeze = true
 	
 	if $MeshInstance3D.scale.y <= SIZE_MIN:
 		is_shrinking = false
+		self.freeze = true
+		self.position = initial_position
 	
 	if is_growing:
 		$MeshInstance3D.scale += Vector3(x_growth, y_growth, z_growth)
 		$CollisionShape3D.shape.size += Vector3(x_growth, y_growth, z_growth)
+		self.freeze = false
 	
 	if is_shrinking:
 		$MeshInstance3D.scale += Vector3(-x_growth, -y_growth, -z_growth)
 		$CollisionShape3D.shape.size += Vector3(-x_growth, -y_growth, -z_growth)
 		self.position += Vector3(x_offset, y_offset, z_offset)
+		self.freeze = false
 
 
 func clicked():
@@ -110,12 +114,8 @@ func check_collision(axis: Vector3, origin_box):
 		if collider.get_meta("boxtype") == "white":
 			return 0
 		elif collider.get_meta("boxtype") == "red":
-			collider.freeze = true
-			frozen.append(collider)
 			return 0
 		elif collider.get_meta("boxtype") == "blue":
-			collider.freeze = true
-			frozen.append(collider)
 			return check_collision(axis, collider)
 	return GROW_SPEED/2
 

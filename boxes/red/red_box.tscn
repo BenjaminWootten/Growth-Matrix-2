@@ -13,6 +13,7 @@ resource_local_to_scene = true
 
 [node name="red_box" type="RigidBody3D"]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_n1sbg")
 metadata/boxtype = "red"
 
