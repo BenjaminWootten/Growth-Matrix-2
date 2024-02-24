@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://cc6kiu2pjcdbx"]
+
+[ext_resource type="PackedScene" uid="uid://b8t0aq6i2t5me" path="res://level_base.tscn" id="1_itryy"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="2_2rttr"]
+[ext_resource type="PackedScene" uid="uid://bw86ooorq4fib" path="res://red_box.tscn" id="2_3q41r"]
+[ext_resource type="PackedScene" uid="uid://bvlq1ub348o60" path="res://blue_box.tscn" id="3_w3c34"]
+[ext_resource type="PackedScene" uid="uid://cwk0x5qc24t3a" path="res://white_box.tscn" id="4_6da3t"]
+[ext_resource type="PackedScene" uid="uid://de2hds1hn2mnm" path="res://green_box.tscn" id="6_q2bxy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c5p3l"]
+sky_top_color = Color(0.34902, 0.607843, 0.764706, 1)
+sky_horizon_color = Color(0.605882, 0.714799, 0.747956, 1)
+ground_horizon_color = Color(0.605882, 0.714799, 0.747956, 1)
+
+[sub_resource type="Sky" id="Sky_rd4s5"]
+sky_material = SubResource("ProceduralSkyMaterial_c5p3l")
+
+[sub_resource type="Environment" id="Environment_70qxt"]
+background_mode = 2
+sky = SubResource("Sky_rd4s5")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00201273, 0.0206568, -0.00730705)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_70qxt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="level_base" parent="." instance=ExtResource("1_itryy")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58588, 11.7067)
+script = ExtResource("2_2rttr")
+
+[node name="boxes" type="Node3D" parent="."]
+
+[node name="red_boxes" type="Node3D" parent="boxes"]
+
+[node name="red_box" parent="boxes/red_boxes" instance=ExtResource("2_3q41r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="blue_boxes" type="Node3D" parent="boxes"]
+
+[node name="blue_box" parent="boxes/blue_boxes" instance=ExtResource("3_w3c34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="white_boxes" type="Node3D" parent="boxes"]
+
+[node name="white_box" parent="boxes/white_boxes" instance=ExtResource("4_6da3t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+
+[node name="green_boxes" type="Node3D" parent="boxes"]
+
+[node name="green_box" parent="boxes/green_boxes" instance=ExtResource("6_q2bxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://de2hds1hn2mnm"]
+
+[ext_resource type="Script" path="res://boxes/green/green_box.gd" id="1_783hu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vombp"]
+albedo_color = Color(0, 0.54902, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2t18s"]
+material = SubResource("StandardMaterial3D_vombp")
+size = Vector3(1.01, 1.01, 1.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ci1at"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="green_box" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_783hu")
+metadata/boxtype = "green"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000848293, -0.00539136, 0.00214291)
+mesh = SubResource("BoxMesh_2t18s")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ci1at")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
