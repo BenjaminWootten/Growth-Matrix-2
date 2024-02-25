@@ -35,7 +35,6 @@ func grow_start():
 func shrink_start():
 	is_shrinking = true
 	red_box_root.set_meta("clickable", false)
-	self.freeze = false
 
 func _physics_process(_delta):
 	if $MeshInstance3D.scale.y >= SIZE_MAX and is_growing:
@@ -51,6 +50,7 @@ func _physics_process(_delta):
 		is_shrinking = false
 		self.freeze = true
 		self.position = initial_position
+		self.rotation = Vector3(0,0,0)
 		grown = false
 		red_box_root.set_meta("clickable", true)
 	
