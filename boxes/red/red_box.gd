@@ -2,6 +2,7 @@ extends RigidBody3D
 
 @onready var red_box_root = self.get_parent()
 @onready var red_boxes = red_box_root.get_children()
+@onready var level_root =  red_box_root.get_parent().get_parent()
 
 var is_growing = false
 var is_shrinking = false
@@ -65,7 +66,7 @@ func _physics_process(_delta):
 
 
 func clicked():
-	if red_box_root.get_meta("clickable"):
+	if red_box_root.get_meta("clickable") and level_root.get_meta("level_active"):
 		# Check if there is already a grown box, shrink it if there is
 		if red_box_root.get_meta("grown_box") >= 0:
 			red_boxes[red_box_root.get_meta("grown_box")].shrink_start()
