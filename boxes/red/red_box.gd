@@ -5,6 +5,7 @@ extends RigidBody3D
 
 var is_growing = false
 var is_shrinking = false
+var grown = false
 @onready var initial_position = Vector3(self.position)
 
 var x_growth
@@ -24,6 +25,7 @@ const RAY_LENGTH = 1
 
 func grow_start():
 	is_growing = true
+	red_box_root.set_meta("clickable", false)
 	
 	for i in red_boxes.size():
 		if red_boxes[i] == self:
@@ -31,19 +33,24 @@ func grow_start():
 
 func shrink_start():
 	is_shrinking = true
+	red_box_root.set_meta("clickable", false)
 
-func _physics_process(delta):
-	if $MeshInstance3D.scale.y >= SIZE_MAX:
+func _physics_process(_delta):
+	if $MeshInstance3D.scale.y >= SIZE_MAX and is_growing:
 		is_growing = false
+		grown = true
 		self.freeze = true
+		red_box_root.set_meta("clickable", true)
 		for box in frozen:
 			box.freeze  = false
 			box.set_collision_layer_value(1, false)
 	
-	if $MeshInstance3D.scale.y <= SIZE_MIN:
+	if $MeshInstance3D.scale.y <= SIZE_MIN and is_shrinking:
 		is_shrinking = false
 		self.freeze = true
 		self.position = initial_position
+		grown = false
+		red_box_root.set_meta("clickable", true)
 	
 	if is_growing:
 		$MeshInstance3D.scale += Vector3(x_growth, y_growth, z_growth)
@@ -58,7 +65,7 @@ func _physics_process(delta):
 
 
 func clicked():
-	if not is_growing and not is_shrinking:
+	if red_box_root.get_meta("clickable"):
 		# Check if there is already a grown box, shrink it if there is
 		if red_box_root.get_meta("grown_box") >= 0:
 			red_boxes[red_box_root.get_meta("grown_box")].shrink_start()
@@ -100,7 +107,7 @@ func clicked():
 			
 			grow_start()
 
-
+# returns 0 if collided, and GROW_SPEED/2 otherwise
 func check_collision(axis: Vector3, origin_box):
 	var end_offset = Vector3(RAY_LENGTH, RAY_LENGTH, RAY_LENGTH)
 	end_offset *= axis
@@ -116,8 +123,14 @@ func check_collision(axis: Vector3, origin_box):
 		var collider = collision.collider
 		if collider.get_meta("boxtype") == "white":
 			return 0
+		
 		elif collider.get_meta("boxtype") == "red":
+			#check if the collider is grown and its center is not adjacent, ignore collision if both are true
+			if collider.grown:
+				if Vector2(self.position.x, self.position.z).distance_to(Vector2(collider.initial_position.x, collider.initial_position.z)) > 1.1:
+					return GROW_SPEED/2
 			return 0
+			
 		elif collider.get_meta("boxtype") == "blue":
 			var blue_chain_result = check_collision(axis, collider)
 			if blue_chain_result == 0:

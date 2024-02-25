@@ -37,7 +37,7 @@ func cast_ray(mouse_pos):
 func pan_start():
 	panning = true
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if panning:
 		var mouse_pos = get_viewport().get_mouse_position()
 		if previous_mouse_pos:
