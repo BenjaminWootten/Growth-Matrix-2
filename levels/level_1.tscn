@@ -8,7 +8,6 @@
 [node name="level_1" type="Node3D"]
 
 [node name="default_level" parent="." instance=ExtResource("1_kls04")]
-metadata/level_active = true
 
 [node name="red_box" parent="default_level/boxes/red_boxes" index="0" instance=ExtResource("2_w85v1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)

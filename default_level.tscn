@@ -22,6 +22,7 @@ glow_enabled = true
 [node name="default_level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00201273, 0.0206568, -0.00730705)
 script = ExtResource("1_6urg5")
+metadata/level_active = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_70qxt")
