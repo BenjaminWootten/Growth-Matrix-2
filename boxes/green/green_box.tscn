@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://boxes/green/green_box.gd" id="1_783hu"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vombp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxdwp"]
 albedo_color = Color(0, 0.54902, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_2t18s"]
-material = SubResource("StandardMaterial3D_vombp")
+[sub_resource type="BoxMesh" id="BoxMesh_jekn8"]
+material = SubResource("StandardMaterial3D_yxdwp")
 size = Vector3(1.01, 1.01, 1.01)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ci1at"]
@@ -20,7 +20,7 @@ metadata/boxtype = "green"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000848293, -0.00539136, 0.00214291)
-mesh = SubResource("BoxMesh_2t18s")
+mesh = SubResource("BoxMesh_jekn8")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
