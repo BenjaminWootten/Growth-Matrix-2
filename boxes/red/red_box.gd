@@ -87,7 +87,9 @@ func clicked():
 			
 			# Set offset based on collisions, allows moving back to original
 			# position if pushed during growth
-			if x_positive_growth == 0:
+			if x_positive_growth == 0 and x_negative_growth == 0:
+				x_offset = 0
+			elif x_positive_growth == 0:
 				x_offset = GROW_SPEED/4
 			elif x_negative_growth == 0:
 				x_offset = -GROW_SPEED/4
@@ -99,7 +101,9 @@ func clicked():
 			else:
 				y_offset = 0
 			
-			if z_positive_growth == 0:
+			if z_positive_growth == 0 and z_negative_growth == 0:
+				z_offset = 0
+			elif z_positive_growth == 0:
 				z_offset = GROW_SPEED/4
 			elif z_negative_growth == 0:
 				z_offset = -GROW_SPEED/4
