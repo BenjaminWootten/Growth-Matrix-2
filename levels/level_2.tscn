@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://c318ta0rx3ali"]
+
+[ext_resource type="PackedScene" uid="uid://cc6kiu2pjcdbx" path="res://default_level.tscn" id="1_pleg6"]
+[ext_resource type="PackedScene" uid="uid://bw86ooorq4fib" path="res://boxes/red/red_box.tscn" id="2_4bsdv"]
+[ext_resource type="PackedScene" uid="uid://bvlq1ub348o60" path="res://boxes/blue/blue_box.tscn" id="3_cxwg7"]
+[ext_resource type="PackedScene" uid="uid://cwk0x5qc24t3a" path="res://boxes/white/white_box.tscn" id="4_cct8w"]
+[ext_resource type="PackedScene" uid="uid://de2hds1hn2mnm" path="res://boxes/green/green_box.tscn" id="5_5568k"]
+
+[node name="level_2" type="Node3D"]
+
+[node name="default_level" parent="." instance=ExtResource("1_pleg6")]
+
+[node name="red_box" parent="default_level/boxes/red_boxes" index="0" instance=ExtResource("2_4bsdv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+
+[node name="red_box2" parent="default_level/boxes/red_boxes" index="1" instance=ExtResource("2_4bsdv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -1)
+
+[node name="blue_box" parent="default_level/boxes/blue_boxes" index="0" instance=ExtResource("3_cxwg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="white_box" parent="default_level/boxes/white_boxes" index="0" instance=ExtResource("4_cct8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -1)
+
+[node name="white_box2" parent="default_level/boxes/white_boxes" index="1" instance=ExtResource("4_cct8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
+
+[node name="white_box3" parent="default_level/boxes/white_boxes" index="2" instance=ExtResource("4_cct8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -1)
+
+[node name="white_box4" parent="default_level/boxes/white_boxes" index="3" instance=ExtResource("4_cct8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+
+[node name="green_box" parent="default_level/boxes/green_boxes" index="0" instance=ExtResource("5_5568k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -1)
+
+[editable path="default_level"]
