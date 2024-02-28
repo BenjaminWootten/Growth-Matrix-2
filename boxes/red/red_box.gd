@@ -17,7 +17,8 @@ var x_offset
 var y_offset
 var z_offset
 
-var frozen = []
+var frozen_blues = []
+var moved_blues = []
 
 const GROW_SPEED = 0.05
 const SIZE_MAX = 3 - 0.025
@@ -44,9 +45,11 @@ func _physics_process(_delta):
 		grown = true
 		self.freeze = true
 		red_box_root.set_meta("clickable", true)
-		for box in frozen:
+		for box in frozen_blues:
 			box.freeze  = false
 			box.set_collision_layer_value(1, false)
+		for box in moved_blues:
+			box.stop()
 	
 	if $MeshInstance3D.scale.y <= SIZE_MIN and is_shrinking:
 		is_shrinking = false
@@ -141,7 +144,9 @@ func check_collision(axis: Vector3, origin_box):
 			if blue_chain_result == 0:
 				collider.freeze = true
 				collider.set_collision_layer_value(1, true)
-				frozen.append(collider)
+				frozen_blues.append(collider)
+			else:
+				moved_blues.append(collider)
 			return blue_chain_result
 	return GROW_SPEED/2
 
