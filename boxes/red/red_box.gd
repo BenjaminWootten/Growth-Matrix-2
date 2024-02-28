@@ -37,9 +37,10 @@ func grow_start():
 func shrink_start():
 	is_shrinking = true
 	red_box_root.set_meta("clickable", false)
-	$CollisionShape3D.shape.size = Vector3(SIZE_MIN, SIZE_MIN, SIZE_MIN)
+	self.set_collision_mask_value(2, false)
 
 func _physics_process(_delta):
+	# Runs when max size is reached
 	if $MeshInstance3D.scale.y >= SIZE_MAX and is_growing:
 		is_growing = false
 		grown = true
@@ -51,6 +52,7 @@ func _physics_process(_delta):
 		for box in moved_blues:
 			box.stop()
 	
+	# Runs when minimum size is reached
 	if $MeshInstance3D.scale.y <= SIZE_MIN and is_shrinking:
 		is_shrinking = false
 		self.freeze = true
@@ -58,13 +60,16 @@ func _physics_process(_delta):
 		self.rotation = Vector3(0,0,0)
 		grown = false
 		red_box_root.set_meta("clickable", true)
+		self.set_collision_mask_value(2, true)
 	
 	if is_growing:
 		$MeshInstance3D.scale += Vector3(x_growth, y_growth, z_growth)
 		$CollisionShape3D.shape.size += Vector3(x_growth, y_growth, z_growth)
+		self.position += Vector3(-x_offset, -y_offset, -z_offset)
 	
 	if is_shrinking:
 		$MeshInstance3D.scale += Vector3(-x_growth, -y_growth, -z_growth)
+		$CollisionShape3D.shape.size += Vector3(-x_growth, -y_growth, -z_growth)
 		self.position += Vector3(x_offset, y_offset, z_offset)
 
 
@@ -99,10 +104,10 @@ func clicked():
 			else:
 				x_offset = 0
 			
-			if y_negative_growth:
-				y_offset = -GROW_SPEED/2
-			else:
+			if y_negative_growth == 0:
 				y_offset = 0
+			else:
+				y_offset = -GROW_SPEED/2
 			
 			if z_positive_growth == 0 and z_negative_growth == 0:
 				z_offset = 0
@@ -115,7 +120,8 @@ func clicked():
 			
 			grow_start()
 
-# returns 0 if collided, and GROW_SPEED/2 otherwise
+# returns 0 if collided, and GROW_SPEED/2 otherwise, adds blue boxes to frozen_blues or pushed_blues
+# based on if they are pushed or not
 func check_collision(axis: Vector3, origin_box):
 	var end_offset = Vector3(RAY_LENGTH, RAY_LENGTH, RAY_LENGTH)
 	end_offset *= axis
@@ -135,7 +141,7 @@ func check_collision(axis: Vector3, origin_box):
 		elif collider.get_meta("boxtype") == "red":
 			#check if the collider is grown and its center is not adjacent, ignore collision if both are true
 			if collider.grown:
-				if Vector2(self.position.x, self.position.z).distance_to(Vector2(collider.initial_position.x, collider.initial_position.z)) > 1.1:
+				if Vector2(self.initial_position.x, self.initial_position.z).distance_to(Vector2(collider.initial_position.x, collider.initial_position.z)) > 1.1:
 					return GROW_SPEED/2
 			return 0
 			
