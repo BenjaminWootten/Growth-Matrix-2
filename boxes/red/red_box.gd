@@ -36,6 +36,7 @@ func grow_start():
 func shrink_start():
 	is_shrinking = true
 	red_box_root.set_meta("clickable", false)
+	$CollisionShape3D.shape.size = Vector3(SIZE_MIN, SIZE_MIN, SIZE_MIN)
 
 func _physics_process(_delta):
 	if $MeshInstance3D.scale.y >= SIZE_MAX and is_growing:
@@ -61,7 +62,6 @@ func _physics_process(_delta):
 	
 	if is_shrinking:
 		$MeshInstance3D.scale += Vector3(-x_growth, -y_growth, -z_growth)
-		$CollisionShape3D.shape.size += Vector3(-x_growth, -y_growth, -z_growth)
 		self.position += Vector3(x_offset, y_offset, z_offset)
 
 
