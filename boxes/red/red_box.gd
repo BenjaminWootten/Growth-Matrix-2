@@ -37,7 +37,7 @@ func grow_start():
 func shrink_start():
 	is_shrinking = true
 	red_box_root.set_meta("clickable", false)
-	self.set_collision_mask_value(2, false)
+	self.set_collision_layer_value(3, false)
 
 func _physics_process(_delta):
 	# Runs when max size is reached
@@ -60,7 +60,7 @@ func _physics_process(_delta):
 		self.rotation = Vector3(0,0,0)
 		grown = false
 		red_box_root.set_meta("clickable", true)
-		self.set_collision_mask_value(2, true)
+		self.set_collision_layer_value(3, true)
 	
 	if is_growing:
 		$MeshInstance3D.scale += Vector3(x_growth, y_growth, z_growth)
