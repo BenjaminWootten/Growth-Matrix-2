@@ -4,10 +4,12 @@ extends Area3D
 
 func _ready():
 	self.body_entered.connect(green_box_root._on_green_box_body_entered)
+	self.body_exited.connect(green_box_root._on_green_box_body_exited)
 	$MeshInstance3D.mesh = $MeshInstance3D.mesh.duplicate()
 	$MeshInstance3D.mesh.material = $MeshInstance3D.mesh.material.duplicate()
 
 func _on_body_entered(_body):
+	await get_tree().create_timer(0.1).timeout
 	$MeshInstance3D.mesh.material.albedo_color = Color(0.5, 0.25, 0.8, 1.0)
 
 func _on_body_exited(_body):
