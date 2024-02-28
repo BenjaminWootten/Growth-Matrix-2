@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmiftn6in4pr4"]
+
+[ext_resource type="PackedScene" uid="uid://cc6kiu2pjcdbx" path="res://default_level.tscn" id="1_8ba38"]
+[ext_resource type="PackedScene" uid="uid://bw86ooorq4fib" path="res://boxes/red/red_box.tscn" id="2_skjda"]
+[ext_resource type="PackedScene" uid="uid://bvlq1ub348o60" path="res://boxes/blue/blue_box.tscn" id="3_kpdik"]
+
+[node name="level_12" type="Node3D"]
+
+[node name="default_level" parent="." instance=ExtResource("1_8ba38")]
+
+[node name="red_box" parent="default_level/boxes/red_boxes" index="0" instance=ExtResource("2_skjda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+
+[node name="blue_box" parent="default_level/boxes/blue_boxes" index="0" instance=ExtResource("3_kpdik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[editable path="default_level"]
