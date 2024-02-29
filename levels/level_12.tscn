@@ -1,17 +1,88 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmiftn6in4pr4"]
+[gd_scene load_steps=6 format=3 uid="uid://dmiftn6in4pr4"]
 
 [ext_resource type="PackedScene" uid="uid://cc6kiu2pjcdbx" path="res://default_level.tscn" id="1_8ba38"]
 [ext_resource type="PackedScene" uid="uid://bw86ooorq4fib" path="res://boxes/red/red_box.tscn" id="2_skjda"]
 [ext_resource type="PackedScene" uid="uid://bvlq1ub348o60" path="res://boxes/blue/blue_box.tscn" id="3_kpdik"]
+[ext_resource type="PackedScene" uid="uid://cwk0x5qc24t3a" path="res://boxes/white/white_box.tscn" id="4_lshn0"]
+[ext_resource type="PackedScene" uid="uid://de2hds1hn2mnm" path="res://boxes/green/green_box.tscn" id="5_jblu8"]
 
 [node name="level_12" type="Node3D"]
 
 [node name="default_level" parent="." instance=ExtResource("1_8ba38")]
 
 [node name="red_box" parent="default_level/boxes/red_boxes" index="0" instance=ExtResource("2_skjda")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -1)
+
+[node name="red_box2" parent="default_level/boxes/red_boxes" index="1" instance=ExtResource("2_skjda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
+
+[node name="red_box5" parent="default_level/boxes/red_boxes" index="2" instance=ExtResource("2_skjda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65661e-10, 1, -2.79397e-09)
+
+[node name="red_box3" parent="default_level/boxes/red_boxes" index="3" instance=ExtResource("2_skjda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -1)
+
+[node name="red_box4" parent="default_level/boxes/red_boxes" index="4" instance=ExtResource("2_skjda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 1)
+
+[node name="red_box6" parent="default_level/boxes/red_boxes" index="5" instance=ExtResource("2_skjda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 3)
+
+[node name="red_box7" parent="default_level/boxes/red_boxes" index="6" instance=ExtResource("2_skjda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 2)
 
 [node name="blue_box" parent="default_level/boxes/blue_boxes" index="0" instance=ExtResource("3_kpdik")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -1)
+
+[node name="blue_box2" parent="default_level/boxes/blue_boxes" index="1" instance=ExtResource("3_kpdik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65661e-10, 1, -1)
+
+[node name="blue_box3" parent="default_level/boxes/blue_boxes" index="2" instance=ExtResource("3_kpdik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2.79397e-09)
+
+[node name="blue_box4" parent="default_level/boxes/blue_boxes" index="3" instance=ExtResource("3_kpdik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2.79397e-09)
+
+[node name="blue_box5" parent="default_level/boxes/blue_boxes" index="4" instance=ExtResource("3_kpdik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -2.79397e-09)
+
+[node name="blue_box6" parent="default_level/boxes/blue_boxes" index="5" instance=ExtResource("3_kpdik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65661e-10, 1, 1)
+
+[node name="blue_box7" parent="default_level/boxes/blue_boxes" index="6" instance=ExtResource("3_kpdik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 1)
+
+[node name="blue_box8" parent="default_level/boxes/blue_boxes" index="7" instance=ExtResource("3_kpdik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 2)
+
+[node name="white_box" parent="default_level/boxes/white_boxes" index="0" instance=ExtResource("4_lshn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -2)
+
+[node name="white_box2" parent="default_level/boxes/white_boxes" index="1" instance=ExtResource("4_lshn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -3)
+
+[node name="white_box3" parent="default_level/boxes/white_boxes" index="2" instance=ExtResource("4_lshn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -2)
+
+[node name="white_box4" parent="default_level/boxes/white_boxes" index="3" instance=ExtResource("4_lshn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 1)
+
+[node name="white_box7" parent="default_level/boxes/white_boxes" index="4" instance=ExtResource("4_lshn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 2)
+
+[node name="white_box5" parent="default_level/boxes/white_boxes" index="5" instance=ExtResource("4_lshn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 3)
+
+[node name="white_box6" parent="default_level/boxes/white_boxes" index="6" instance=ExtResource("4_lshn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 3)
+
+[node name="green_box" parent="default_level/boxes/green_boxes" index="0" instance=ExtResource("5_jblu8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, -4)
+
+[node name="green_box2" parent="default_level/boxes/green_boxes" index="1" instance=ExtResource("5_jblu8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -3)
+
+[node name="green_box3" parent="default_level/boxes/green_boxes" index="2" instance=ExtResource("5_jblu8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -3)
 
 [editable path="default_level"]
